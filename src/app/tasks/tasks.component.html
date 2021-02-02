@@ -1,0 +1,37 @@
+<div class="container">
+    <h1 style="margin-bottom: 1rem;color: teal;text-align: center;font-size: 4rem;">ToDoList</h1>
+    <div class="card" >
+      <div>
+        <h3 *ngIf="getPendingTasksCount()>0" class="pl-5">You have <span [ngClass]="{red:getPendingTasksCount()>3,'green':getPendingTasksCount()<=3}">{{getPendingTasksCount()}}</span>  pending tasks</h3>
+      </div>  
+        <div class="card-header">
+          <div class="col-md-8">
+              <input type="text" #inputTitle (keyup.enter)="addTask(inputTitle.value);inputTitle.value=''" class="form-control">
+          </div>
+          <div class="col-md-4">
+              <button class="btn btn-primary mt-2" (click)="addTask(inputTitle.value);inputTitle.value=''">Add</button>
+          </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of tasks;let currentIndex=index">
+                <td>{{currentIndex +1}}</td>
+                <td [ngClass]="{'done-task': item.Done}">{{item.Title}}</td>
+                <td><input type="checkbox" [checked]="item.Done" (change)="changeStatus(item)"> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+      </div>
+</div>

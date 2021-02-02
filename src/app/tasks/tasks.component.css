@@ -1,0 +1,10 @@
+.done-task{
+    text-decoration: line-through;
+    background-color: wheat;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
